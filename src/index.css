@@ -5,9 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root{
+  height: 100%;
+}
+
+ul{
+  list-style-type: none;
+}
+
+ul li {
+  margin: 15px 5px;
+}
+
+ul li a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #0C138C;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+ul li .selected {
+  background-color: #E2EEFF;
+}
+
+

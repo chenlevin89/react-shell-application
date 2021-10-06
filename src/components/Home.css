@@ -1,0 +1,14 @@
+.Home {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+}
+
+.Home > div {
+    padding: 40px;
+    box-shadow: 1px 1px 1px 1px rgb(0 0 0 / 30%);
+    border-radius: 5px;
+    background-color: #E2EEFF;
+}
