@@ -32,20 +32,25 @@ module.exports = env => ({
     plugins: [
         new ModuleFederationPlugin({
             remotes: {
-                'Mfe1':'remoteApp1@http://localhost:5200/remoteEntry.js'
+                'Mfe1':'remoteApp1@http://localhost:5200/remoteEntry.js',
+                'VueMfe':'vueRemoteApp@http://localhost:5400/remoteEntry.js'
             },
             shared: {
                 'react': {
-                    requiredVersion: `${dependencies['react']}`
+                    requiredVersion: `${dependencies['react']}`,
+                    singleton:true
                 },
                 'react-dom': {
-                    requiredVersion: `${dependencies['react-dom']}`
+                    requiredVersion: `${dependencies['react-dom']}`,
+                    singleton:true
                 },
                 'react-router-dom': {
-                    requiredVersion: dependencies['react-router-dom']
+                    requiredVersion: dependencies['react-router-dom'],
+                    singleton:true
                 },
                 '@chenlevin89/awesome-lib': {
-                    requiredVersion: dependencies['@chenlevin89/awesome-lib']
+                    requiredVersion: dependencies['@chenlevin89/awesome-lib'],
+                    singleton:true
                 }
             }
         }),

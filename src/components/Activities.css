@@ -1,0 +1,14 @@
+.Activities {
+    position: relative;
+}
+
+.Activities button {
+    position:absolute;
+    right: 20px;
+    top: 0px;
+}
+
+.Activities table {
+    width: 900px;
+    margin: auto;
+}

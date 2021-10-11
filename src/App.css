@@ -24,7 +24,13 @@
   border-radius: 12px;
 }
 
-.App img {
+.App ul img {
   position: absolute;
   right: 20px;
+}
+
+.App ul > span {
+  position: absolute;
+  right: 70px;
+  top:  25px;
 }

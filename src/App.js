@@ -1,24 +1,29 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  NavLink
-} from "react-router-dom";
-import './App.css';
-import '@chenlevin89/awesome-lib/dist/index.css'
+import React, {useState, useEffect, Suspense, lazy} from 'react';
+import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
+import {observable} from '@chenlevin89/awesome-lib'
+
 import Home from './components/Home';
 import Activities from './components/Activities';
-import Mfe from 'Mfe1/MfeComponent';
-import logo from './assets/module-federation.png';
-import React, {useState, useEffect} from 'react';
-import {ButtonComponent, observable} from '@chenlevin89/awesome-lib'
+import DynamicLoad from  './components/DynamicLoad';
+import Navbar from './components/Navbar';
+import {activities,createNewActivity,counter} from './state';
 
+import './App.css';
+import '@chenlevin89/awesome-lib/dist/index.css'
+
+
+const Mfe = lazy(() => import('Mfe1/MfeComponent'));
 
 
 function App() {
 
-  const [state, setState] = useState({counter: 1000});
-  const callback = (value) => {setState({...state, counter: state.counter + value})};
+  const [state, setState] = useState({counter, activities});
+
+  const callback = (value) => {
+    const activity = createNewActivity(value);
+    const activities = [...state.activities, activity];
+    setState({...state, counter: state.counter + value, activities})
+  };
 
   useEffect(() => {
     observable.register({eventName: 'update_balance', callback});
@@ -32,31 +37,24 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <ul>
-          <li>
-            <NavLink exact to="/" activeClassName="selected" >Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/activities" activeClassName="selected">Activities</NavLink>
-          </li>
-          <li>
-            <NavLink to="/operations" activeClassName="selected">Operations</NavLink>
-          </li>
-          <img src={logo} height="50px" width="auto" />
-        </ul>
-
+        <Navbar />
         <div className="container">
-          <Switch>
-            <Route exact path="/">
-              <Home counter={state.counter} />
-            </Route>
-            <Route path="/activities">
-              <Activities />
-            </Route>
-            <Route path="/operations">
-              <Mfe />
-            </Route>
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <Route exact path="/">
+                <Home counter={state.counter} />
+              </Route>
+              <Route path="/activities">
+                <Activities activities={state.activities} />
+              </Route>
+              <Route path="/operations">
+                <Mfe />
+              </Route>
+              <Route path="/contact">
+                <DynamicLoad path="VueMfe/VueMfeComponent" element="vue-mfe-element" />
+              </Route>
+            </Switch>
+          </Suspense>
         </div>
       </div>
     </Router>
