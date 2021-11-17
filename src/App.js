@@ -1,17 +1,16 @@
 import React, {useState, useEffect, Suspense, lazy} from 'react';
 import {BrowserRouter as Router,Switch,Route,} from "react-router-dom";
 import {observable} from '@chenlevin89/awesome-lib'
-
-import Home from './components/Home';
-import Activities from './components/Activities';
 import DynamicLoad from  './components/DynamicLoad';
 import Navbar from './components/Navbar';
 import {activities,createNewActivity,counter} from './state';
-
 import './App.css';
 import '@chenlevin89/awesome-lib/dist/index.css'
 
 
+// Lazy Routes
+const Home = lazy(() => import('./components/Home'));
+const Activities = lazy(() => import('./components/Activities'));
 const Mfe = lazy(() => import('Mfe1/MfeComponent'));
 
 

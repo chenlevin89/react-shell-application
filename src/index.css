@@ -23,6 +23,7 @@ ul{
 
 ul li {
   margin: 15px 5px;
+  position: relative;
 }
 
 ul li a {

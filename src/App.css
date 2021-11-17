@@ -24,9 +24,15 @@
   border-radius: 12px;
 }
 
-.App ul img {
+.App ul img.logo {
   position: absolute;
   right: 20px;
+}
+
+.App ul img.star-icon{
+  position: absolute;
+  top: -6px;
+  left: 2px;
 }
 
 .App ul > span {
