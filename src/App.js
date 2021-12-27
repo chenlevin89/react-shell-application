@@ -11,7 +11,7 @@ import '@chenlevin89/awesome-lib/dist/index.css'
 // Lazy Routes
 const Home = lazy(() => import('./components/Home'));
 const Activities = lazy(() => import('./components/Activities'));
-const Mfe = lazy(() => import('reactRemote/Operations'));
+const Operations = lazy(() => import('reactRemote/Operations'));
 
 
 function App() {
@@ -47,7 +47,7 @@ function App() {
                 <Activities activities={state.activities} />
               </Route>
               <Route path="/operations">
-                <Mfe />
+                <Operations />
               </Route>
               <Route path="/contact">
                 <DynamicLoad path="vueRemote/ContactUs" element="vue-mfe-element" />
