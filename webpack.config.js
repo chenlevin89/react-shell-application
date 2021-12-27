@@ -32,8 +32,8 @@ module.exports = env => ({
     plugins: [
         new ModuleFederationPlugin({
             remotes: {
-                'Mfe1':'remoteApp1@http://localhost:5200/remoteEntry.js',
-                'VueMfe':'vueRemoteApp@http://localhost:5400/remoteEntry.js'
+                'reactRemote':'reactRemote@http://localhost:5200/remoteEntry.js',
+                'vueRemote':'vueRemote@http://localhost:5400/remoteEntry.js'
             },
             shared: {
                 'react': {

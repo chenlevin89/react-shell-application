@@ -17,6 +17,6 @@ export default function DynamicLoad({path,element}) {
 }
 
 const mapping = {
-    'VueMfe/VueMfeComponent': () => import('VueMfe/VueMfeComponent')
+    'vueRemote/ContactUs': () => import('vueRemote/ContactUs')
 };
 
