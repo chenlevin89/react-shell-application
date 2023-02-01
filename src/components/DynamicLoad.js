@@ -1,22 +1,22 @@
 import React, {useRef, useEffect} from 'react';
 
-export default function DynamicLoad({path,element}) {
+export default function DynamicLoad({dynamicImport, props}) {
 
-    const containerRef = useRef(null);
-  
-    useEffect(() => {
-        mapping[path]().then(_ => {
-        const elem = document.createElement(element);
-        containerRef.current.appendChild(elem);
-      })
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    let unmount;
+
+    dynamicImport().then(({default: createApp}) => {
+      unmount = createApp(containerRef.current, props);
     })
-  
-    return (
-      <div style={{height:'100%'}} ref={containerRef} ></div>
-    );
+
+    return () => unmount();
+  }, [])
+
+  return (
+    <div style={{height: '100%'}} ref={containerRef} ></div>
+  );
 }
 
-const mapping = {
-    'vueRemote/ContactUs': () => import('vueRemote/ContactUs')
-};
 
